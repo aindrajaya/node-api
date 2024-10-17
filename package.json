@@ -5,9 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node src/index.ts",
-    "build": "npm install ts-node --save-dev && npm install typescript --save-dev && tsc && npm install pm2 -g", 
-    "start": "node dist/index.js",
-    "prod": "pm2 start dist/index.js --name basic"
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
