@@ -14,7 +14,7 @@ import app from "./server";
  */
 
 // Start the server
-app.listen(3000, () => {
+app.listen(10000 , () => {
     // Log a message to the console
     console.log('Server is running on http://localhost:3000');
 })
