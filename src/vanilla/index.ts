@@ -1,4 +1,5 @@
-const  http = require('http');
+// const  http = require('http'); //for JS
+import http from 'http';
 
 /**
  * Notes:
@@ -38,4 +39,5 @@ const server = http.createServer(async (req, res) => {
 })
 
 // The server.listen() method is used to start the server listening for incoming requests. The method takes two arguments: the port number and a callback function. The port number is the port on which the server will listen for incoming requests. The callback function is executed when the server starts listening for incoming requests. The callback function can be used to perform any necessary setup or logging. The server will continue running until it is stopped or an error occurs.
-module.exports = server;
+// module.exports = server; //for JS
+export default server;

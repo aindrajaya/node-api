@@ -1,8 +1,10 @@
 // This API will use Express framework
-const express = require('express');
+// const express = require('express'); //for JS
+import express from 'express';
 
 // Import the path module
-const path = require('path');
+// const path = require('path'); //for JS
+import path from 'path';
 
 // Create an Express application
 const app = express();
@@ -44,4 +46,5 @@ app.get('/about', (req, res) => {
 })
 
 // Export the Express application
-module.exports = app;
+// module.exports = app; //for JS
+export default app;

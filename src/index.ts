@@ -1,6 +1,7 @@
 // Import the service from the server file
-const app = require('./server');
-// const serverVanilla = require('./vanilla/index.js');
+// const app = require('./server'); //for JS
+// const serverVanilla = require('./vanilla/index.js'); //for JS
+import app from "./server";
 
 /**
  * Notes:
