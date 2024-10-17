@@ -12,3 +12,54 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       String    @id @default(uuid()) // This is a UUID, not an Int
+  createAt DateTime  @default(now()) // This is a DateTime, not a String
+  username String    @unique // This is a unique string, not an Int
+  password String // This is a string, not an Int
+  products  Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid()) // This is a UUID, not an Int
+  createAt    DateTime @default(now()) // This is a DateTime, not a String
+  name        String   @db.VarChar(255) // This is a string, not an Int, and it has a max length of 255
+  belongsToId String // This is a string, not an Int, and it is a foreign key to the User model
+  belongsTo   User     @relation(fields: [belongsToId], references: [id]) // This is a relation to the User model
+  updates     Update[]
+}
+
+enum UPDATE_STATUSES {
+  IN_PROGRESS
+  SHIPPED
+  DEPRECATED
+}
+
+model Update {
+  id String @id @default(uuid()) // This is a UUID, not an Int
+  createAt DateTime @default(now()) // This is a DateTime, not a String
+  updateAt DateTime // This is a DateTime, not a String
+
+  title String // This is a string, not an Int
+  body  String // This is a string, not an Int
+  status UPDATE_STATUSES @default(IN_PROGRESS) // This is an enum, not an Int, and it has a default value of IN_PROGRESS
+  version String? // This is an optional string, not an Int
+  asset String? // This is an optional string, not an Int
+
+  productId String // This is a string, not an Int, and it is a foreign key to the Product model
+  product   Product @relation(fields: [productId], references: [id]) // This is a relation to the Product model
+  updatePoints  UpdatePoint[]
+}
+
+model UpdatePoint {
+  id String @id @default(uuid()) // This is a UUID, not an Int
+  createAt DateTime @default(now()) // This is a DateTime, not a String
+  updateAt DateTime
+
+  name String @db.VarChar(255) // This is a string, not an Int, and it has a max length of 255
+  description String // This is a string, not an Int
+
+  updateId String // This is a string, not an Int, and it is a foreign key to the Update model
+  update   Update @relation(fields: [updateId], references: [id]) // This is a relation to the Update model
+}
