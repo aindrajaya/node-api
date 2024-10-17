@@ -23,17 +23,19 @@ const server = http.createServer(async (req, res) => {
         // res.end();
 
         // With more complex example
-        console.log('GET request received');
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        res.write(JSON.stringify({message: 'Hello World'}));
+        console.log('GET request received'); // Log a message to the console
+        res.writeHead(200, {'Content-Type': 'application/json'}); // Set the HTTP status code and content type for the response
+        res.write(JSON.stringify({message: 'Hello World use Vanilla Node.js'})); // Send a JSON response back to the client
         res.end();
         return
     }
 
+    // If the request method is not GET or the URL is not '/', then we will send a 404 Not Found response back to the client.
     res.writeHead(404, {'Content-Type': 'application/json'});
+
+    // Send a JSON response back to the client
     res.write(JSON.stringify({message: 'Not Found'}));
 })
 
-server.listen(3005, () => {
-    console.log('Server is running on port 3005');
-})
+// The server.listen() method is used to start the server listening for incoming requests. The method takes two arguments: the port number and a callback function. The port number is the port on which the server will listen for incoming requests. The callback function is executed when the server starts listening for incoming requests. The callback function can be used to perform any necessary setup or logging. The server will continue running until it is stopped or an error occurs.
+module.exports = server;
