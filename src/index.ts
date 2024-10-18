@@ -2,6 +2,9 @@
 // const app = require('./server'); //for JS
 // const serverVanilla = require('./vanilla/index.js'); //for JS
 import app from "./server";
+import * as dotenv from 'dotenv'; // Import the dotenv module
+dotenv.config(); // Load environment variables from a .env file into process.env
+
 const PORT = 3000;
 
 /**
