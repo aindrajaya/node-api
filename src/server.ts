@@ -10,6 +10,9 @@ import router from './router'; // Import the router module
 import morgan from 'morgan'; // Import the morgan module
 import cors from 'cors'; // Import the cors module, cors is a middleware that can be used to enable CORS with various options. CORS is cross origin research sharing, it's a security feature that restricts what resources a web page can request from another domain. Basically it's a thing, browser super skeptic, they're terrified of making requests to other domains. So if you're making a request from one domain to another domain, the browser will block it.
 
+//Custom middleware function - AUTHENTICATION
+import { protect } from './handlers/protect';
+
 // Create an Express application
 const app = express();
 
@@ -58,9 +61,8 @@ app.get('/', (req, res) => {
  * 2. The method takes two arguments: the route path and the middleware function.
  * 3. The route path is a string that defines the URL path for the middleware function.
  */
-app.use('/api', router);
-
-app.get('/about', (req, res) => {
+app.use('/api', protect, router);
+app.get('/about', protect, (req, res) => {
     // Log a message to the console
     console.log('GET request received to access About page use Express framework');
 
