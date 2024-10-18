@@ -12,6 +12,8 @@ import cors from 'cors'; // Import the cors module, cors is a middleware that ca
 
 //Custom middleware function - AUTHENTICATION
 import { protect } from './handlers/protect';
+import { createNewUser, signIn } from './handlers/user';
+
 
 // Create an Express application
 const app = express();
@@ -62,6 +64,11 @@ app.get('/', (req, res) => {
  * 3. The route path is a string that defines the URL path for the middleware function.
  */
 app.use('/api', protect, router);
+
+// Auth routes to create a new user and sign in
+app.post('/user', createNewUser);
+app.post('/login',signIn );
+
 app.get('/about', protect, (req, res) => {
     // Log a message to the console
     console.log('GET request received to access About page use Express framework');
