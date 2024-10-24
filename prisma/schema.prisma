@@ -28,6 +28,8 @@ model Product {
   belongsToId String // This is a string, not an Int, and it is a foreign key to the User model
   belongsTo   User     @relation(fields: [belongsToId], references: [id]) // This is a relation to the User model
   updates     Update[]
+  // @@index([id, belongsToId]) // This is an index on the id and belongsToId fields, it used to speed up queries
+  @@unique([id, belongsToId]) // This is a unique constraint on the id and belongsToId fields
 }
 
 enum UPDATE_STATUSES {
@@ -50,6 +52,7 @@ model Update {
   productId String // This is a string, not an Int, and it is a foreign key to the Product model
   product   Product @relation(fields: [productId], references: [id]) // This is a relation to the Product model
   updatePoints  UpdatePoint[]
+  @@unique([id, productId]) // This is a unique constraint on the id and productId fields
 }
 
 model UpdatePoint {
