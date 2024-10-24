@@ -80,6 +80,16 @@ app.get('/about', protect, (req, res) => {
     res.sendFile(path.resolve('./src/public/about.html'));
 })
 
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.status(err.status || 500).json({
+        message: err.message,
+        stack: err.stack
+    });
+    // console.error(err.stack);
+    // res.status(500).send('Something broke!');
+})
+
 // Export the Express application
 // module.exports = app; //for JS
 export default app;
